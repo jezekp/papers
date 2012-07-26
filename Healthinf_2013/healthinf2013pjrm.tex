@@ -57,7 +57,7 @@ The set of available frameworks is limited. After investigating possibilities of
 
 The Carmen Portal \cite{fgibson:Watson2007} provides a set of implemented analytical tools. An user can upload a custom data into the local storage. The data can be analyzed using implemented tools and the results are putted into the virtual directory assigned to users' profile. When a user wants to add a custom analytical tool he/she can upload it into the system. When this method is approved by Carmen administrators they will incorporate it into the system.
 
-Carmen is only one well-known system that enables calling of analytical methods remotely together with the possibility to store experimental results. 
+Carmen is only one well-known system that enables calling of analytical methods remotely together with the possibility to store experimental results.
 
 The next approaches work locally without any possibilities to save or share experimental results.
 
@@ -65,7 +65,7 @@ Modular Toolkit for Data Processing (MDP) \cite{citeulike:3973843} is a data pro
 
 BioSig \cite{BIOSIG} is a free open source software library of biomedical signal-processing tools implemented as a library for Matlab, Octave and C/C++. The last version of the tool called biosic4c++ can be also used in the Python. This system contains additional submodules for e.g. real-time data processing or a signal viewer.
 
-Since a data processing often requires usage of more methods sequentially a creating of specific workflows is required. 
+Since a data processing often requires usage of more methods sequentially a creating of specific workflows is required.
 
 Taverna \cite{citeulike:1041436} is an open source and domain-independent Workflow Management System developed by $^{my}Grid$\footnote{http://www.mygrid.org.uk/} team a suite of tools used to design and execute scientific workflows and aid in silico experimentation.
 
@@ -129,7 +129,7 @@ When a new method is emerging it has to satisfy several conditions in order to b
 
 \subsubsection{Web Interface}
 
-\noindent Communication with users client system is ensured using Web Service Connector in the case where user has only data but not a custom system connected to the Internet we prepared a simple web based interface. Figure \ref{fig:system_overview} shows the interface overview. The user can lists installed signal processing methods and available processing units. When he/she wants to upload a custom data a simple upload form is prepared. The uploaded data are stored into the user's space and processed on the background. When a result is available a link to download appears. 
+\noindent Communication with users client system is ensured using Web Service Connector in the case where user has only data but not a custom system connected to the Internet we prepared a simple web based interface. Figure \ref{fig:system_overview} shows the interface overview. The user can lists installed signal processing methods and available processing units. When he/she wants to upload a custom data a simple upload form is prepared. The uploaded data are stored into the user's space and processed on the background. When a result is available a link to download appears.
 
   \begin{figure}[t!]
 	\centering
@@ -143,7 +143,7 @@ When a new method is emerging it has to satisfy several conditions in order to b
 
 \noindent Since the system is public available through the Internet the access to the system has to be secured. The system is protected by system accounts with two possible user roles. The "user" can upload a custom data that can be protected while the "administrator" can manage registered users and configure the system. On the implementation level the security is ensured by Spring Security framework with one way hashed with randomly generated salt user passwords.
 
-The user can register into the system by filling simple registration form. When user accesses the system through the Web Services API the SSL transfer is ensured and users credentials are required.  
+The user can register into the system by filling simple registration form. When user accesses the system through the Web Services API the SSL transfer is ensured and users credentials are required.
 
 \section{\uppercase{Implemented Plug-ins}}
 
@@ -177,15 +177,17 @@ Currently we have implemented following methods:
 
 \noindent When the system is released the next step will be an implementation of client side within the EEG/ERP Portal. It allows to portal user a more comfortable work because load will be distributed between two servers. A faster response will be ensured.
 
-Since a need to associate methods into workflows was mentioned in Section \ref{sec:StateOfTheArt} we plan to implement a wokflow module into the system. This module will ensure a creation of custom workflows and stored them into the user account. We plan to make it easy to use by preparing an interface with drag and draw functionality. 
+Since a need to associate methods into workflows was mentioned in Section \ref{sec:StateOfTheArt} we plan to implement a wokflow module into the system. This module will ensure a creation of custom workflows and stored them into the user account. We plan to make it easy to use by preparing an interface with drag and draw functionality.
 
-The next research challenge leads in the sharing not only data and signal processing methods, but dissemination of knowledge about e. g. designing of experimental scenarios, results or data interpretation etc. Because of increasing popularity of social networks amount of provided information is increasing. Such networks should be suitable medium for sharing information between researchers. 
+The next research challenge leads in the sharing not only data and signal processing methods, but dissemination of knowledge about e. g. designing of experimental scenarios, results or data interpretation etc. Because of increasing popularity of social networks amount of provided information is increasing. Such networks should be suitable medium for sharing information between researchers.
 
 We plan to implement a custom internal social network in the system. The internal social network will be connected with external social networks (e. g. Facebook, Twitter or LinkedIn). When a user publish a comment to an internal social network it will be also possible to publish it on a selected external social network. In addition, a back synchronization is desirable. When a user is logged on external social network he/she can download comments into the internal social network. Our plan is to develop a framework that will automatically browse social networks and find comments according to defined rules.
 
 \section{\uppercase{Conclusions}}
 \label{sec:conclusion}
 
+
+\section*{\uppercase{Acknowledgements}}
 
 %\vfill
 \bibliographystyle{apalike}
