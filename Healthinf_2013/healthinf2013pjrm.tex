@@ -21,7 +21,7 @@
 
 \begin{document}
 
-\title{EEG Data Processor  \subtitle{Framework for Running Signal Processing Methods} }
+\title{Electroencephalography Data Processor  \subtitle{Framework for Running Signal Processing Methods} }
 
 \author{\authorname{Petr Je\v{z}ek\sup{1}, Roman Mou\v{c}ek\sup{2}}
 \affiliation{\sup{1}New Technologies for the Information Society, \sup{2}Department of Computer Science and Engineering}
@@ -31,9 +31,9 @@
 \email{jezekp@ntis.zcu.cz, moucek@kiv.zcu.cz}
 }
 
-\keywords{EEG/ERP, Signal Processing, Data Processing, Plug-in, Methods, Discrete Wavelet Transform,  Complete Wavelet Transform, Matching Pursuit, Fast Independent Component Analysis, Finite Input Response, Fast Fourier Transform, Workflow, Software as Service}
+\keywords{EEG/ERP, Signal Processing, Data Processing, Plug-in, Wavelet Transform, Matching Pursuit, Fast Independent Component Analysis, Finite Input Response, Fast Fourier Transform, Workflow, Software as Service}
 
-\abstract{This paper introduces difficulties related to the EEG/ERP signal processing. Although several systems that implement signal processing methods exist, their sharing and remote calling is not satisfactorily solved. Authors present a custom server-side approach that provides a powerful plug-in engine for integration of signal processing methods. The plug-in engine ensures high modularity and flexibility of the system. Since the implemented methods are accessible via the SOAP Web Service, integration with another system is available. There is also possible to use the system locally via a web browser. The set of basic methods is already implemented and presented. The architecture and the most important parts of the system are also presented.
+\abstract{This paper introduces difficulties related to running of signal processing methods. Although several systems that implement signal processing methods exist, their sharing and remote calling is not satisfactorily solved. Authors present a custom server-side approach that provides a powerful plug-in engine for integration of signal processing methods. The plug-in engine ensures high modularity and flexibility of the system. Since the implemented methods are accessible via the SOAP Web Service, integration with another system is available. There is also possible to use the system locally via a web browser. The set of basic methods is already implemented and presented. The architecture and the most important parts of the system are also presented.
 }
 
 \onecolumn \maketitle \normalsize \vfill
@@ -45,15 +45,15 @@
 
 The Czech INCF National Node cooperates on the definition of a standardized data/metadata format for electrophysiology research. As an initial step we developed a custom solution called the EEG/ERP Portal \cite{DBLP:conf/biostec/JezekM10}.
 
-The EEG/ERP Portal is a web based system that enable users to store, share and manage custom experiments. Data are stored within the EEG/ERP Portal and they are accessible through a web browser. In addition, we provide data in the Semantic Web form available for automatic readers. The  Semantic Framework \cite{DBLP:conf/biostec/JezekM12} that we developed transforms data from the EEG/ERP Portal into the Semantic Web languages (OWL, RDF). The EEG/ERP Portal is registered within the Neuroscience Information Framework (NIF) \cite{DBLP:journals/ni/GardnerAABBDGGGGHKMMMMRSSEW08}; it ensures easier searchability of stored experiments. The EEG/ERP Portal is also integrated with other developed systems (e. g. JERPA \cite{DBLP:conf/biostec/JezekM11}) via Web Service API.
+Data are stored within the EEG/ERP Portal and they are accessible through a web browser. In addition, we provide data in the Semantic Web form available for automatic readers. The  Semantic Framework \cite{DBLP:conf/biostec/JezekM12} that we developed transforms data from the EEG/ERP Portal into the Semantic Web languages. The EEG/ERP Portal is registered within the Neuroscience Information Framework (NIF) \cite{DBLP:journals/ni/GardnerAABBDGGGGHKMMMMRSSEW08}; it ensures easier searchability of stored experiments. The EEG/ERP Portal is also integrated with other developed systems (e. g. JERPA \cite{DBLP:conf/biostec/JezekM11}) via Web Service API.
 
 Because data from stored experiments are usually further processed using various signal processing methods, we are presenting the EEG Data Processor that enables running of signal processing methods remotely.
 
 \section{\label{sec:StateOfTheArt}\uppercase{State of the Art}}
 
-\noindent When data are collected they are supposed to be further processed. The EEG/ERP Portal stores experimental data but actually it does not support any possibility to run signal processing methods. When third-party signal processing methods are to be used, data need to be downloaded and processed locally. The obtained result are not stored as well.
+\noindent When data are collected they are supposed to be further processed. When third-party signal processing methods are to be used, data need to be downloaded and processed locally. The obtained results are not stored as well.
 
-When we were looking for a suitable tool, we found that the set of available frameworks was limited. The following existing tools are able to process EEG/ERP experimental data.
+When we were looking for a suitable tool, we found that the set of available frameworks  limited. The following existing tools are able to process EEG/ERP experimental data.
 
 The Carmen Portal \cite{fgibson:Watson2007} provides a set of implemented analytical tools. A user can upload custom data into a local storage. Data can be analyzed and the results are putted into a virtual directory assigned to users' profiles. When the user wants to add a custom analytical tool he/she can upload it into the system. When this method is approved by Carmen administrators they integrate it into the system.
 
@@ -92,7 +92,7 @@ The focus of the EEG Data Processor is to be a software as a service (SaaS) deli
 \section{\uppercase{Design and Realization}}
 
 
-\subsection{Architecture}
+\subsection{Overall Architecture}
 
 \noindent The system is a layered architecture. This architectural style is supported by used programming languages and technologies (Java, Maven, Spring, Hibernate, Apache CXF web services etc.)
 
@@ -115,50 +115,56 @@ The internal structure consists of several components (see Figure \ref{fig:compo
 \item External Method Invoker - Is responsible for execution of a requested method. It parses the method parameters and takes the method result.
 \end{itemize}
 
-The significant modules of the system are described in the following section.
 
-
-
-\subsection{Significant Modules}
-
-\subsubsection{\label{sec:Plug-in-Engine}Plug-in Engine}
-
-\noindent A Plug-in engine is a central unit of the system. It contain an implementation of a Processor. The Processor is an abstraction of implemented EEG Binary Loading libraries that are intended to read input digitalized signal stored using various data formats. The Processor creates individual Processes. The Process is an encapsulation of a specific method together with the specific parameters needed to start the method.
-
-When a new method is developing it has to satisfy several conditions in order to be integrated into the system. First it must contain one input method with specified input parameters of the method and a XML description of the output. Because of output of  individual methods can be different (e.g waveforms, discrete points, etc.) the XML format ensures its easier future representation. Second, the method has to have a descriptive properties file that contains the name of the input method, package and class. When the method is invoked by the described External Method Invoker, it reads all parameters from the properties file and configures the created Process.
-
+\subsection{Interaction with External Systems}
 
 \subsubsection{Web Service Connector}
 
+
+
 \noindent Since the EEG Data Processor is supposed to be accessed by external clients' systems, the Web Service API best matches this requirement. The system provides a simple interface with several basic methods. The client can obtain a list of installed methods, lists of required parameters for the specific method, get available processing units and call the method that processes input data. Such interface provides a sufficient list of operations in order to be integrated with any client system. A usage of SOAP web services ensures easy integration by a well-defined protocol.
+
+
 
 \subsubsection{Web Interface}
 
 \noindent Communication with a client system is ensured using Web Service Connector. If the user has only data but not a custom system connected to the Internet, a simple web based interface is prepared. Figure \ref{fig:system_overview} shows the interface overview. The user can list installed signal processing methods and available processing units. When he/she wants to upload custom data, a simple upload form is prepared. The uploaded data are stored within the user's profile and processed on the background. When the result is available, a link to download appears.
 
+
+
+
+\subsection{Customization Part}
+
+\subsubsection{\label{sec:Plug-in-Engine}Plug-in Engine}
+
+\noindent A Plug-in engine is a central unit of the system. It contain an implementation of a Processor. The Processor is an abstraction of implemented EEG Binary Loading libraries that are intended to read input digitalized signal stored using various data formats. The Processor creates individual Processes. The Process is an encapsulation of a specific method together with the specific parameters needed to start the method.
+
+\subsubsection{\label{sec:Plug-in-Requirements}Plug-in Requirements}
+
+When a new method is developing it has to satisfy several conditions in order to be integrated into the system. First it must contain one input method with specified input parameters of the method and a XML description of the output. Because of output of  individual methods can be different (e.g waveforms, discrete points, etc.) the XML format ensures its easier future representation. Second, the method has to have a descriptive properties file that contains the name of the input method, package and class. When the method is invoked by the described External Method Invoker, it reads all parameters from the properties file and configures the created Process.
+
   \begin{figure}[t!]
 	\centering
-\includegraphics[width=7.5cm, height=7cm]{system_overview}
+\includegraphics[width=7.5cm, height=6cm]{system_overview}
 
 \caption{\label{fig:system_overview}Web Interface Overview}
-
 \end{figure}
 
 \subsection{System Security}
 
 \noindent Since the system is public available through the Internet, secured access has to be ensured. The system is protected by system accounts with two possible user roles. The \emph{user} can upload custom data that can be processed while the \emph{administrator} can manage registered users and configure the system. At the implementation level, the security is ensured by Spring Security framework with protected user passwords by a cryptographic hash function with randomly generated salt.
 
-The user can register into the system by filling a simple registration form. When the user accesses the system through the Web Services API, the SSL transfer is ensured and users credentials are required.
+When the user accesses the system through the Web Services API, the SSL transfer is ensured and users credentials are required.
 
 \section{\uppercase{Implemented Plug-ins}}
 
-\noindent We have already implemented methods that are most often used during experiments within our laboratory. Implemented methods are common Java libraries extended according to the description in Section \ref{sec:Plug-in-Engine}. This architectural style ensures their implementation outside the system independently. Such libraries can be also put into any java-based system. Therefore, we provide implemented plug-ins open source hosted on the public repositories (GitHub, SorceForge). The list of implemented methods is gradually expanding.
+\noindent We have already implemented methods that are most often used during experiments within our laboratory. Implemented methods are common Java libraries extended according to the description in Section \ref{sec:Plug-in-Engine}. It ensures their implementation outside the system independently. We provide implemented plug-ins open source hosted on the public repositories (GitHub, SorceForge). The list of implemented methods is gradually expanding.
 
 Currently, we have implemented the following methods:
 
 \begin{itemize}
 \item
-\textit{Complete and Discrete Wavelet Transform} \cite{DBLP:books/daglib/0098272} are a class of a functions used to localize a given function in both space and scaling.; and has some desirable properties compared to the Fourier transform. The transform is based on a wavelet matrix, which can be computed more quickly than the analogous Fourier matrix.
+\textit{Complete and Discrete Wavelet Transform} \cite{DBLP:books/daglib/0098272} are a class of a functions used to localize a given function in both space and scaling; and has some desirable properties compared to the Fourier transform. The transform is based on a wavelet matrix, which can be computed more quickly than the analogous Fourier matrix.
 
 \item
 \textit{Matching Pursuit} \cite{journals/toms/FerrandoKK02} decomposes any signal into a linear expansion of waveforms that are selected from a redundant dictionary of functions. These waveforms are chosen in order to best match the signal structure. The dictionary is often based on Gabor functions.
@@ -185,9 +191,7 @@ Currently, we have implemented the following methods:
 
 Since a need to associate methods into workflows was mentioned in Section \ref{sec:StateOfTheArt}, we plan to implement a wokflow module into the system. This module will ensure a development of custom workflows and the possibility to store them within users' accounts. An interface with a drag and draw functionality ensures its easy usability.
 
-The next research challenge leads not only in the sharing of data and signal processing methods, but also in dissemination of knowledge about e. g. designing of experimental scenarios, results or data interpretation etc. Because of increasing popularity of social networks, amount of provided information is rising. Such networks should be suitable medium for sharing information between researchers.
-
-We plan to implement a custom internal social network in the system. The internal social network will be connected with external social networks (e. g. Facebook, Twitter or LinkedIn). When a user publishes a comment to an internal social network, it will be also possible to publish it on a selected external social network. In addition, a back synchronization is desirable. When a user is logged on an external social network he/she can download comments into the internal social network. Our plan is to develop a framework that will automatically browse social networks and find comments according to defined rules.
+When signal processing methods implemented in various programming languages (e. g. Python, C/C++, Pearl) exist, the next technological challenge leads in providing a wrapper for a set of most often used programming languages in signal processing.
 
 Further, we plan to investigate possibilities in the area of Cloud Computing, because of a potential load of the server will increase together with the raising number of users. The suitable cloud should help us to improve management of system resources.
 
@@ -198,12 +202,13 @@ Further, we plan to investigate possibilities in the area of Cloud Computing, be
 
 The system combines research in the EEG/ERP domain with modern software engineering approaches. It helps to enhance research efficiency and enables faster achievement of scientific results.
 
-The most often used methods in our laboratory are briefly presented. The presented methods are already implemented and integrated within the system as plug-ins. Due to a powerful plug-in engine interested users are welcome to implement a custom method according to a described procedure. We are able to assume these plug-ins and incorporate them into the system. The system is open-source developed by using common open-source technologies.
+The most often used methods in our laboratory are briefly presented. The presented methods are already implemented and integrated within the system as plug-ins. Due to a powerful plug-in engine interested users are welcome to implement a custom method according to a described procedure. We are able to assume these plug-ins and incorporate them into the system.
 
 
 \section*{\uppercase{Acknowledgements}}
 
-\noindent It will be written in the camera ready paper.
+\noindent
+This work was supported by the European Regional Development Fund (ERDF), Project "NTIS - New Technologies for Information Society", European Centre of Excellence, CZ.1.05/1.1.00/02.0090.
 
 %\vfill
 \bibliographystyle{apalike}
