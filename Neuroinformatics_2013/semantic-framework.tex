@@ -40,8 +40,8 @@ grestore
 %
 %\documentclass{svjour3}                     % onecolumn (standard format)
 %\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
-\documentclass[smallextended]{svjour3}       % onecolumn (second format)
-%\documentclass[twocolumn]{svjour3}          % twocolumn
+%\documentclass[smallextended]{svjour3}       % onecolumn (second format)
+\documentclass[twocolumn]{svjour3}          % twocolumn
 %
 \smartqed  % flush right qed marks, e.g. at end of proof
 %
@@ -67,25 +67,27 @@ grestore
 %
 \begin{document}
 
-\title{Insert your title here%\thanks{Grants or other notes
-%about the article that should go on the front page should be
-%placed here. General acknowledgments should be placed at the end of the article.}
+\title{Semantic Framework\thanks{This work was supported by the European Regional Development Fund (ERDF), Project "NTIS - New Technologies for Information Society", European Centre of Excellence, CZ.1.05/1.1.00/02.0090.}
 }
-\subtitle{Do you have a subtitle?\\ If so, write it here}
+\subtitle{Mapping Object Oriented Structures to Semantic Web Technologies}
 
 %\titlerunning{Short form of title}        % if too long for running head
 
-\author{First Author         \and
+\author{Petr Je\v{z}ek         \and
         Second Author %etc.
 }
 
 %\authorrunning{Short form of author list} % if too long for running head
 
-\institute{F. Author \at
-              first address \\
-              Tel.: +123-45-678910\\
-              Fax: +123-45-678910\\
-              \email{fauthor@example.com}           %  \\
+\institute{P. Je\v{z}ek \at
+              New Technologies for the Information Society \\
+              Department of Computer Science and Engineering\\
+              Faculty of Applied Sciences \\
+              University of  West Bohemia \\
+              Univerzitní 8 \\
+              306 14  Plze\v{n} \\
+              Czech Republic \\
+              \email{jezekp@ntis.zcu.cz}           %  \\
 %             \emph{Present address:} of F. Author  %  if needed
            \and
            S. Author \at
@@ -108,7 +110,12 @@ subject classification numbers as needed.
 
 \section{Introduction}
 \label{intro}
-Your text comes here. Separate text sections with
+Our research group specializes in the research of brain activity. The main interest of experiments is a measurement of reaction time e. g. drivers. We use methods of Electroencephalography (EEG) and its subdomain Event-Related Potentials (ERP). Measurement of EEG/ERP experiments is a time consuming task that produces a lot of data. With the increasing number of experiments their long-term storage has to be solved. Although many laboratories deal with data collection their long term storage is not successfully solved. The most pressing difficulties is an absence of standardized generally used data format. The data format should describe not only raw data but researchers still more emphasize a need to have a well-defined metadata description of experimental data. As a suitable way to describe a specific domains seems to be its description by domain ontology. 
+
+The suitable medium for sharing experimental data should be the Internet. Despite the popularity of the Internet, how it is growing, it contains of a huge amount of information with  practically no classification. Such not classified data are not suitable for sharing. As a solution an extension called the Semantic Web that is intended to give the data semantic meaning is being developed. Ontology is considered one of the pillars of the Semantic Web. As a result, suitable ontology that precisely describes domain of EEG/ERP experiments should help with its interpretation. However current software systems are usually object-oriented and semantic gaps between object-oriented code and Semantic Web languages are significant. We present a proposed mapping and its implementation that extends common object-oriented code by missing semantics. The proposed mapping we practically implemented within a custom Semantic Framework. 
+
+Integration of developed Framework within EEG/ERP Portal enable transform stored experiments into the Semantic Web structure. This structure provides access to data thought Neuroscience Information Framework (NIF) \cite{NIF-Neuroinformatics}.  
+
 \section{Section title}
 \label{sec:1}
 Text with citations \cite{RefB} and \cite{RefJ}.
@@ -164,25 +171,12 @@ number & number & number \\
 %\end{acknowledgements}
 
 % BibTeX users please use one of
+\bibliographystyle{apalike}  % used another style because provided styles don't work 
 %\bibliographystyle{spbasic}      % basic style, author-year citations
 %\bibliographystyle{spmpsci}      % mathematics and physical sciences
 %\bibliographystyle{spphys}       % APS-like style for physics
-%\bibliography{}   % name your BibTeX data base
+\bibliography{semantic-framework}   % name your BibTeX data base
 
-% Non-BibTeX users please use
-\begin{thebibliography}{}
-%
-% and use \bibitem to create references. Consult the Instructions
-% for authors for reference list style.
-%
-\bibitem{RefJ}
-% Format for Journal Reference
-Author, Article title, Journal, Volume, page numbers (year)
-% Format for books
-\bibitem{RefB}
-Author, Book title, page numbers. Publisher, place (year)
-% etc
-\end{thebibliography}
 
 \end{document}
 % end of file template.tex
