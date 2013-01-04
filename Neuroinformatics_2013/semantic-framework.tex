@@ -51,7 +51,7 @@ grestore
 
 %It ensures a direct compilation from tex to pdf.
 \usepackage{epstopdf}
-
+\usepackage[sort, numbers, authoryear]{natbib}
 %
 % \usepackage{mathptmx}      % use Times fonts if available on your TeX system
 %
@@ -63,7 +63,7 @@ grestore
 % \newcommand{}{}
 %
 % Insert the name of "your journal" with
-% \journalname{myjournal}
+ \journalname{Neuroinformatics}
 %
 \begin{document}
 
@@ -110,15 +110,41 @@ subject classification numbers as needed.
 
 \section{Introduction}
 \label{intro}
-Our research group specializes in the research of brain activity. The main interest of experiments is a measurement of reaction time e. g. drivers. We use methods of Electroencephalography (EEG) and its subdomain Event-Related Potentials (ERP). Measurement of EEG/ERP experiments is a time consuming task that produces a lot of data. With the increasing number of experiments their long-term storage has to be solved. Although many laboratories deal with data collection their long term storage is not successfully solved. The most pressing difficulties is an absence of standardized generally used data format. The data format should describe not only raw data but researchers still more emphasize a need to have a well-defined metadata description of experimental data. As a suitable way to describe a specific domains seems to be its description by domain ontology. 
+Our research group specializes in the research of brain activity. The main interest of experiments is a measurement of reaction time e. g. drivers. We use methods of Electroencephalography (EEG) and its subdomain Event-Related Potentials (ERP). Measurement of EEG/ERP experiments is a time consuming task that produces a lot of data. With the increasing number of experiments their long-term storage has to be solved. Although many laboratories deal with data collection their long term storage is not satisfactorily solved. The most pressing difficulties is an absence of standardized generally used data formats. The data formats should describe not only raw data but researchers still more emphasize a need to have a well-defined metadata description of experimental data. As a suitable way to describe a specific domains seems to be its description by domain ontology.
 
-The suitable medium for sharing experimental data should be the Internet. Despite the popularity of the Internet, how it is growing, it contains of a huge amount of information with  practically no classification. Such not classified data are not suitable for sharing. As a solution an extension called the Semantic Web that is intended to give the data semantic meaning is being developed. Ontology is considered one of the pillars of the Semantic Web. As a result, suitable ontology that precisely describes domain of EEG/ERP experiments should help with its interpretation. However current software systems are usually object-oriented and semantic gaps between object-oriented code and Semantic Web languages are significant. We present a proposed mapping and its implementation that extends common object-oriented code by missing semantics. The proposed mapping we practically implemented within a custom Semantic Framework. 
+There were formed several organizations that aim is to solve difficulties with sustainability of neuroscience databases. Probably the most important of them is International Neuroinformatics Coordinating Facility (INCF) formed in 2005 \citep{INCF-evaluation-first-year}. INCF is being developing an infrastructure serves to national nodes developing a partial infrastructure of each specific domain.
 
-Integration of developed Framework within EEG/ERP Portal enable transform stored experiments into the Semantic Web structure. This structure provides access to data thought Neuroscience Information Framework (NIF) \cite{NIF-Neuroinformatics}.  
+The suitable medium for sharing experimental data should be the Internet. Despite the popularity of the Internet, how it is growing, it contains of a huge amount of information with  practically no classification. Such not classified data are not suitable for sharing. As a solution an extension called the Semantic Web, that is intended to give the data semantic meaning, is being developed. Ontology is considered one of the pillars of the Semantic Web. 
 
-\section{Section title}
-\label{sec:1}
-Text with citations \cite{RefB} and \cite{RefJ}.
+As a result, suitable ontology that precisely describes domain of EEG/ERP experiments should help with its interpretation. However current software systems are usually object-oriented and semantic gaps between object-oriented code and Semantic Web languages are significant. We present a proposed mapping and its implementation that extends common object-oriented code by missing semantics. The proposed mapping we practically implemented within a custom Semantic Framework.
+
+We developed EEG/ERP Portal \citep{ISI:000306821100004} intended to manage and share experimental data\footnote{http://eegdatabase.kiv.zcu.cz}. The internal structure of EEG/ERP portal is designed with respecting INCF recommendations \cite{incf-sustainability-report}. Integration of developed Framework within EEG/ERP Portal enables transformation of stored experiments into the Semantic Web structure. This structure provides access to data thought Neuroscience Information Framework (NIF) \citep{NIF-Neuroinformatics}.
+
+\section{Common Systems for Data Modeling}
+\label{Common Systems for Data Modeling}
+
+\section{Semantic Web Modeling}
+\label{Semantic_Web_Modeling}
+
+\section{Mapping Data Models}
+\label{Mapping_Data_Models}
+
+\section{Semantic Framework}
+\label{Semantic_Framework}
+
+\section{Discussion}
+\label{discussion}
+
+\section{Future Work}
+\label{Future_Work}
+
+\section{Conclusion}
+\label{Conclusion}
+
+\section{Information Sharing Statement}
+\label{Information_sharing_statement}
+
+
 \subsection{Subsection title}
 \label{sec:2}
 as required. Don't forget to give each section
@@ -171,8 +197,8 @@ number & number & number \\
 %\end{acknowledgements}
 
 % BibTeX users please use one of
-\bibliographystyle{apalike}  % used another style because provided styles don't work 
-%\bibliographystyle{spbasic}      % basic style, author-year citations
+%\bibliographystyle{apalike}  % used another style because provided styles don't work 
+\bibliographystyle{spbasic}      % basic style, author-year citations
 %\bibliographystyle{spmpsci}      % mathematics and physical sciences
 %\bibliographystyle{spphys}       % APS-like style for physics
 \bibliography{semantic-framework}   % name your BibTeX data base
