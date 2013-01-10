@@ -156,9 +156,15 @@ Object-oriented concepts are described by UML diagrams. Object oriented programm
 
 Both UML and OWL are based on classes. While extent of UML classes is on or more instances, in OWL the extent of class is a set of individuals defined by URIs. Because all individuals are subclasses of an universal class \emph{Thing} and individuals may be instances of \emph{Thing} and not necessary to any other class, it can be used outside the system.
 
+Relationship among OWL classes are called properties. Properties are two types. \emph{ObjectProperty} if the type of property is another individual or \emph{DataTypeProperty} when the property is an atomic type. Both UML and OWL support separation into modules, called \emph{package} in UML and \emph{Ontology} in OWL. Both support enumeration of elements.
+
+OWL properties can be constrained by cardinality restrictions. Cardinality restrictions in UML properties are limited to \emph{many-to-many}, \emph{many-to-one} or \emph{one-to-one} relationships. 
+ 
+OWL allows properties to be declared symmetric or transitive. UML uses \emph{Object Constraint Language (OCL)} \citep{DBLP:conf/sfm/CabotG12}. UML classifiers are \emph{private}, \emph{protected}, \emph{default} or \emph{public} while OWL classifiers are always \emph{public}.
 
 \subsubsection{Different Concepts}
 \label{Different_concepts}
+
 
 \section{Semantic Framework}
 \label{Semantic_Framework}
