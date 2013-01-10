@@ -141,8 +141,33 @@ One possible solution to deal with these difficulties is to develop increasingly
 \section{Mapping Data Models}
 \label{Mapping_Data_Models}
 
+\subsection{Data concepts}
+\label{Data_Concepts}
+The main construct in object-oriented modeling (OOM) is an object. Since entities and their relations exist in relational databases the similar representation exist in OOM as well. Entities are represented by objects and its relations are represented by their association ends represented by class attributes. All objects should be unique so every object has an identity. This identity is represented by an object identifier (OID) that distinguishes it from all other objects. Similar mechanism exist in relational databases as well. 
+
+Object-oriented concepts are described by UML diagrams. Object oriented programming languages use the concepts in practical sense. 
+
+\subsection{Concepts Comparison}
+\label{concepts_comparison}
+\emph{Ontology Definition Metamodel}\citep{OMG2009} compares concepts of \emph{Web Ontology Language (OWL)} with the features of UML. It compares the features the two have in common with the features in one but not the other. 
+
+\subsubsection{Similar Concepts}
+\label{Similar_concepts}
+
+Both UML and OWL are based on classes. While extent of UML classes is on or more instances, in OWL the extent of class is a set of individuals defined by URIs. Because all individuals are subclasses of an universal class \emph{Thing} and individuals may be instances of \emph{Thing} and not necessary to any other class, it can be used outside the system.
+
+
+\subsubsection{Different Concepts}
+\label{Different_concepts}
+
 \section{Semantic Framework}
 \label{Semantic_Framework}
+
+\subsection{Proposed Mapping}
+\label{Proposed_Mapping}
+
+\section{Related Work}
+\label{Related_Work}
 
 \section{Discussion}
 \label{discussion}
