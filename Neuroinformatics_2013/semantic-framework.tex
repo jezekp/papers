@@ -143,13 +143,13 @@ One possible solution to deal with these difficulties is to develop increasingly
 
 \subsection{Data concepts}
 \label{Data_Concepts}
-The main construct in object-oriented modeling (OOM) is an object. Since entities and their relations exist in relational databases the similar representation exist in OOM as well. Entities are represented by objects and its relations are represented by their association ends represented by class attributes. All objects should be unique so every object has an identity. This identity is represented by an object identifier (OID) that distinguishes it from all other objects. Similar mechanism exist in relational databases as well. 
+The main construct in object-oriented modeling (OOM) is an object. Since entities and their relations exist in relational databases the similar representation exist in OOM as well. Entities are represented by objects and its relations are represented by their association ends represented by class attributes. All objects should be unique so every object has an identity. This identity is represented by an object identifier (OID) that distinguishes it from all other objects. Similar mechanism exist in relational databases as well.
 
-Object-oriented concepts are described by UML diagrams. Object oriented programming languages use the concepts in practical sense. 
+Object-oriented concepts are described by UML diagrams. Object oriented programming languages use the concepts in practical sense.
 
 \subsection{Concepts Comparison}
 \label{concepts_comparison}
-\emph{Ontology Definition Metamodel}\citep{OMG2009} compares concepts of \emph{Web Ontology Language (OWL)} with the features of UML. It compares the features the two have in common with the features in one but not the other. 
+\emph{Ontology Definition Metamodel}\citep{OMG2009} compares concepts of \emph{Web Ontology Language (OWL)} with the features of UML. It compares the features the two have in common with the features in one but not the other.
 
 \subsubsection{Similar Concepts}
 \label{Similar_concepts}
@@ -158,12 +158,80 @@ Both UML and OWL are based on classes. While extent of UML classes is on or more
 
 Relationship among OWL classes are called properties. Properties are two types. \emph{ObjectProperty} if the type of property is another individual or \emph{DataTypeProperty} when the property is an atomic type. Both UML and OWL support separation into modules, called \emph{package} in UML and \emph{Ontology} in OWL. Both support enumeration of elements.
 
-OWL properties can be constrained by cardinality restrictions. Cardinality restrictions in UML properties are limited to \emph{many-to-many}, \emph{many-to-one} or \emph{one-to-one} relationships. 
- 
+OWL properties can be constrained by cardinality restrictions. Cardinality restrictions in UML properties are limited to \emph{many-to-many}, \emph{many-to-one} or \emph{one-to-one} relationships.
+
 OWL allows properties to be declared symmetric or transitive. UML uses \emph{Object Constraint Language (OCL)} \citep{DBLP:conf/sfm/CabotG12}. UML classifiers are \emph{private}, \emph{protected}, \emph{default} or \emph{public} while OWL classifiers are always \emph{public}.
 
 \subsubsection{Different Concepts}
 \label{Different_concepts}
+
+OWL classes may be defined as the set of individuals which satisfy a restriction expression. Either a boolean combination of other classes (\emph{Intersection, Union, Complement}) or property value restriction on properties. In addition, we can resolve the classes and properties restrictions as a sort of predicate logic because from the properties of an individual we are able to resolve that the individual is a member of a class.
+
+In the common OOM the names within one namespace always refer to the same object, and different names always refer to a different object (\emph{unique name assumption}). Names in OWL do not by default fulfill unique name assumption. Although the same name always refers to the same object, the object may be referred by several different names.
+
+OWL can discipline names using \emph{AllDifferent}, \emph{SameAs} or \emph{DifferentFrom} constructs.
+
+In conclusion, a substantial difference is that UML classes with their operations are essentially programs. UML provides facilities \emph{operations}, \emph{responsibilities}, \emph{static operations}, \emph{interface classes}, \emph{abstract classes} supporting programs.
+
+\subsection{Concepts Summary}
+\label{Concepts_summary}
+
+We can summarize that Semantic Web technologies associate three types of features used in the object oriented world. They describe reality in the conceptual level independent to technological restrictions so they are similar to UML representations in OOP. They also constitute database schema for the base of facts (RDF). Eventually they are processed by software tools in the implemented application so they are part of the implementation. 
+
+At the first sight there are several similarities between OOP (expressed by UML) and OWL. They both have classes, instances or inheritance. Both also enable defining cardinality restrictions etc.
+
+However, in detailed view there are many differences. The substantial difference is a meaning of properties and individuals. In the UML instances and properties are removed from classes, in the OWL properties are double types; object and datatype properties. The first one links an individual to an individual and the second one links individuals to data values. 
+
+Table \ref{tab:OWL-and-UML-Features-Comparison} summarizes individual UML constructs and their OWL equivalents. In addition, the table expresses an implementation of described construct in Java. A need for open research tools has been identified \citep{Ince2012} therefore we select a Java language as a promising representant of open source language.
+
+% For tables use
+\begin{table*}
+% table caption is above the table
+\caption{OWL and UML Features Comparison}
+\label{tab:OWL-and-UML-Features-Comparison}       % Give a unique label
+% For LaTeX tables use
+\begin{tabular}{p{3cm}p{3cm}p{5cm}p{4.5cm}}
+\hline\noalign{\smallskip}
+\textbf{UML} & \textbf{OWL} & \textbf{Java} & \textbf{Comment}
+\\
+\hline\noalign{\smallskip}
+Class, atomic type, property ownedAttribute & owl:Class & class &
+\\
+\hline\noalign{\smallskip}
+instance & individual & class instance & OWL owl:individual class independent
+\\
+\hline\noalign{\smallskip}
+owned attribute, association & owl:property & class attribute & OWL has only global attributes
+\\
+\hline\noalign{\smallskip}
+
+subclass, generalization & owl:subclass, owl:subproperty & \emph{extends} & Java doesn't support multiple inheritance
+\\
+\hline\noalign{\smallskip}
+
+enumeration & owl:oneOf & enum &
+\\
+\hline\noalign{\smallskip}
+
+disjoint & owl:disjointWith, owl:unionOf & In Java one object is always an instance of exactly one class, but we should pay attention to class inheritance &
+\\
+\hline\noalign{\smallskip}
+
+multiplicity & owl:MinCardinality, owl:MaxCardinality & There is no Java representation &
+\\
+\hline\noalign{\smallskip}
+
+package & ontology & package &
+\\
+\hline\noalign{\smallskip}
+dependency & RDF:property & methods parameters or return value &
+\\
+\hline\noalign{\smallskip}
+\end{tabular}
+
+\end{table*}
+
+
 
 
 \section{Semantic Framework}
@@ -217,22 +285,6 @@ a^2+b^2=c^2
 \label{fig:2}       % Give a unique label
 \end{figure*}
 %
-% For tables use
-\begin{table}
-% table caption is above the table
-\caption{Please write your table caption here}
-\label{tab:1}       % Give a unique label
-% For LaTeX tables use
-\begin{tabular}{lll}
-\hline\noalign{\smallskip}
-first & second & third  \\
-\noalign{\smallskip}\hline\noalign{\smallskip}
-number & number & number \\
-number & number & number \\
-\noalign{\smallskip}\hline
-\end{tabular}
-\end{table}
-
 
 %\begin{acknowledgements}
 %If you'd like to thank anyone, place your comments here
